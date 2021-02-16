@@ -1,0 +1,52 @@
+version: "3.3"
+services: 
+  redis:
+    image: 7177e01e8c01
+    ports:
+      - 6379:6379
+    hostname: localhost
+    volumes: 
+      - "/Users/rpadmanathan/docker-data:/usr/local/etc/redis/redis.conf"
+  rabbitmq: 
+    image: e8261c2af9fe
+    ports: 
+      - 15672:15672
+      - 5672:5672
+    hostname: localhost
+    volumes: 
+      - "/Users/rpadmanathan/docker-data:/var/lib/rabbitmq"
+  mysql: 
+    image: 102816b1ee7d
+    ports: 
+      - 3306:3306
+    hostname: localhost
+    volumes:
+      - "/Users/rpadmanathan/docker-data:/var/lib/mysql"
+    environment: 
+      MYSQL_ROOT_PASSWORD: Raja@123
+  kafka: 
+    image: a9e0a5b8b15e
+    ports: 
+      - 2181:2181
+      - 9092:9092
+    hostname: localhost
+    volumes: 
+      - "/Users/rpadmanathan/docker-data:/var/lib/kafka"
+
+  mongo: 
+    image: 7177e01e8c01
+    ports: 
+      - 27017:27017
+    hostname: localhost
+    volumes: 
+      - "/Users/rpadmanathan/docker-data:/var/lib/mongo"
+  elasticSearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.2.4
+    container_name: elasticsearch
+    hostname: localhost
+    ports: 
+      - 9200:9200
+      - 9300:9300
+      - 5601:5601
+    volumes: 
+      - "/Users/rpadmanathan/docker-data:/usr/local/etc/elasticsearch/data"
